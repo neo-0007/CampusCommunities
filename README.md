@@ -18,7 +18,7 @@
     <a href="https://github.com/neo-0007/CampusCommunities.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#about-the-project">View Demo</a>
+    <a href="#https://github.com/neo-0007/CampusCommunities/releases/download/v1.0.0-beta/CampusCommunities-v1.0.0-beta.apk">Download apk</a>
     ·
     <a href="https://github.com/neo-0007/CampusCommunities/issues/new">Report Bug</a>
     ·
