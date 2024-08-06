@@ -74,7 +74,7 @@ class _UserDataPageState extends State<UserDataPage> {
               child: TextField(
                 controller: selectedRollNumber,
                 decoration: InputDecoration(
-                  hintText: 'Roll No.',
+                  hintText: 'Roll No. (eg. format CSB23023)',
                   hintStyle: GoogleFonts.workSans(fontSize: 17),
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(width: 2),
