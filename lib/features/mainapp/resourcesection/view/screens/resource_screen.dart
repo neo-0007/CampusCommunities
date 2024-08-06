@@ -1,3 +1,4 @@
+import 'package:CampusCommunities/features/mainapp/resourcesection/view/widgets/practical_block.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:CampusCommunities/core/theme/appcolors/app_colors.dart';
@@ -27,10 +28,12 @@ class _ResourceScreenState extends State<ResourceScreen> {
   void getCourses() async {
     final List<CourseModel> fetchedCourses =
         await resourceRepository.fetchCourseData(1);
-    setState(() {
-      courses = fetchedCourses;
-      isLoading = false;
-    });
+    setState(
+      () {
+        courses = fetchedCourses;
+        isLoading = false;
+      },
+    );
   }
 
   @override
@@ -54,22 +57,31 @@ class _ResourceScreenState extends State<ResourceScreen> {
         ),
       ),
       body: Center(
-        child: isLoading
-            ? const CircularProgressIndicator()
-            : courses.isEmpty
-                ? const Text('No Courses Found !')
-                : ListView.builder(
-                    itemCount: courses.length,
-                    itemBuilder: (context, index) {
-                      return SubjectBlock(
-                        courseId: courses[index].id,
-                        subjectName: courses[index].courseName,
-                        courseCode: courses[index].courseCode,
-                        credits: courses[index].credits,
-                        topicCount: courses[index].topicCount,
-                      );
-                    },
+        child: courses.isEmpty
+            ? const Text('No Courses Found !')
+            : CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: courses.length,
+                itemBuilder: (context, index) {
+                  return SubjectBlock(
+                    courseId: courses[index].id,
+                    subjectName: courses[index].courseName,
+                    courseCode: courses[index].courseCode,
+                    credits: courses[index].credits,
+                    topicCount: courses[index].topicCount,
+                  );
+                },
+              ),
+            ),
+                  SliverToBoxAdapter(
+                    child: PracticalBlock(semesterNo: widget.semesterNo),
                   ),
+                ],
+              ),
       ),
     );
   }

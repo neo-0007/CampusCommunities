@@ -1,5 +1,6 @@
 import 'package:CampusCommunities/features/mainapp/resourcesection/models/course_model.dart';
 import 'package:CampusCommunities/features/mainapp/resourcesection/models/pdf_model.dart';
+import 'package:CampusCommunities/features/mainapp/resourcesection/models/practical_model.dart';
 import 'package:CampusCommunities/features/mainapp/resourcesection/models/topic_model.dart';
 import 'package:CampusCommunities/utils/constants.dart';
 
@@ -67,6 +68,20 @@ class ResourceRepository {
           .eq('topic_id', topicId);
       final List<dynamic> data = response as List<dynamic>;
       return data.map((json) => PdfModel.fromJson(json)).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<List<PracticalModel>> fetchPracticalData(
+      {required int semesterId}) async {
+    try {
+      final response = await supabaseClient
+          .from('practicals')
+          .select('*')
+          .eq('semester_id',semesterId);
+      final List<dynamic> data = response as List<dynamic>;
+      return data.map((value) => PracticalModel.fromJson(value)).toList();
     } catch (e) {
       return [];
     }
