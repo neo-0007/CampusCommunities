@@ -5,6 +5,7 @@ import 'package:CampusCommunities/core/theme/appcolors/app_colors.dart';
 import 'package:CampusCommunities/features/auth/model/usermodel.dart';
 import 'package:CampusCommunities/features/auth/repository/auth_repository.dart';
 import 'package:CampusCommunities/features/mainapp/uploaddocument/view/pages/upload_document_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerHomepage extends StatefulWidget {
   const DrawerHomepage({super.key});
@@ -106,7 +107,11 @@ class _DrawerHomepageState extends State<DrawerHomepage> {
             leading:
                 SvgPicture.asset('assets/images/github-142-svgrepo-com.svg'),
             title: const Text('Contribute'),
-            onTap: () {},
+            onTap: () {
+                const githubRepoLink = 'https://github.com/neo-0007/CampusCommunities';
+                launchUrl(Uri.parse(githubRepoLink),
+                mode: LaunchMode.externalApplication);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.phone),
