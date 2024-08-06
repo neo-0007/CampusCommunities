@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
             height: 10,
           ),
           TextFieldCustom(
-            hintText: 'Password',
+            hintText: 'Password (more than 6 characters)',
             isPassword: true,
             controller: passwordController,
           ),
