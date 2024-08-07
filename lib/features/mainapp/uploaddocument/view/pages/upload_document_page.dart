@@ -101,6 +101,15 @@ class _UploadDocumentPageState extends State<UploadDocumentPage> {
   //   });
   // }
 
+  void cleanFields() {
+    setState(() {
+      selectedSemester = null;
+      selectedCourse = null;
+      selectedTopic = null;
+      pickedFile = null;
+    });
+  }
+
   Future<void> uploadPdfToStorage() async {
     if (pickedFile == null) {
       // Show an error message to the user
@@ -115,7 +124,10 @@ class _UploadDocumentPageState extends State<UploadDocumentPage> {
       final fileName = pickedFile!.name;
       final path =
           '${selectedCourse!.replaceAll(' ', '-')}/pdf-notes/$fileName';
-      await supabaseClient.storage.from('CampusCommunities').upload(path, file);
+      await supabaseClient.storage
+          .from('campus-communities')
+          .upload(path, file);
+      cleanFields();
       if (!mounted) return;
       Utils.showSnackbar(context, 'File Uploaded Succesfully',
           backgroundColor: Colors.green);
