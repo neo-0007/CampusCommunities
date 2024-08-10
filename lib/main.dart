@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:CampusCommunities/core/secrets/app_secrets.dart';
 import 'package:CampusCommunities/features/auth/repository/local_auth_repository.dart';
 import 'package:CampusCommunities/myapp.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,5 +15,8 @@ Future<void> main() async {
       localStorage: MySecureStorage(),
     ),
   );
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((fn) {
+    runApp(const MyApp());
+  });
 }
