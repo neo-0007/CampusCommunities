@@ -28,11 +28,19 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> getUser() async {
-    final res = await currentuser.getCurrentUser();
-    setState(() {
-      user = res;
-      isLoading = false;
-    });
+    try {
+      final res = await currentuser.getCurrentUser();
+      setState(() {
+        user = res;
+        isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+      if (!mounted) return;
+      Utils.showSnackbar(context, 'Error Occured : $e ');
+    }
   }
 
   @override
@@ -50,7 +58,9 @@ class _ProfilePageState extends State<ProfilePage> {
             )
           : Padding(
               padding: EdgeInsets.fromLTRB(40, screenSize.height / 12, 40, 0),
-              child: Column(
+              child:(user==null)
+               ?const Center(child: Text('An Error Occured'),)
+               :Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
