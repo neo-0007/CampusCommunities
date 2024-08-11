@@ -2,6 +2,7 @@ import 'package:CampusCommunities/core/theme/appcolors/app_colors.dart';
 import 'package:CampusCommunities/core/user/currentuser.dart';
 import 'package:CampusCommunities/core/widgets/back_button_custom.dart';
 import 'package:CampusCommunities/core/widgets/loader.dart';
+import 'package:CampusCommunities/core/widgets/snackbar_message.dart';
 import 'package:CampusCommunities/features/auth/model/usermodel.dart';
 import 'package:CampusCommunities/features/mainapp/homesection/view/widgets/user_data_box.dart';
 import 'package:CampusCommunities/features/mainapp/homesection/view/widgets/user_data_box_2.dart';
@@ -90,7 +91,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: screenSize.width / 4.2,
                     child: UserDataButton(
                       buttonText: 'Edit',
-                      onPressed: () {},
+                      onPressed: () {
+                        Utils.showAlert(context, 'Coming Soon',
+                            'This feature is under development');
+                      },
                     ),
                   )
                 ],
