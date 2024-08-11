@@ -1,3 +1,4 @@
+import 'package:CampusCommunities/features/mainapp/homesection/view/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:CampusCommunities/core/theme/appcolors/app_colors.dart';
 import 'package:CampusCommunities/features/auth/repository/auth_repository.dart';
@@ -32,7 +33,12 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 15, 0),
-            child: Container(
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) =>const ProfilePage()));
+              },
+              child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: ReplyAppColors.nearlyWhite),
@@ -42,7 +48,9 @@ class HomeScreen extends StatelessWidget {
                     Icons.person_2_rounded,
                     color: Colors.blue,
                   ),
-                )),
+                ),
+              ),
+            ),
           )
         ],
       ),
